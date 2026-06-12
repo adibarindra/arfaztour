@@ -165,9 +165,6 @@
       loader.style.display = 'block';
       btn.disabled = true;
 
-      /* =======================================================================
-         ⚠️ WAJIB: GANTI URL DI BAWAH INI DENGAN PAUTAN WEB APP GOOGLE SCRIPT ANDA
-         ======================================================================= */
       const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbwe3Q54AdxeRNai3hFa65KSNTP__wO-oPpHWCIpRZguVZSPCINUvdstj9wv0LSEcA_83A/exec";
 
       fetch(`${URL_WEB_APP}?idTrip=${encodeURIComponent(trip)}&password=${encodeURIComponent(pass)}`)

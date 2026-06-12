@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arfaz Tour | Portal Dokumentasi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #004e64;
+      --secondary: #25a18e;
+      --accent: #ff8c42;
+      --light: #f8fafc;
+    }
+
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      /* Menggunakan Link Background Kustom Anda */
+      background: linear-gradient(rgba(0, 78, 100, 0.6), rgba(0, 78, 100, 0.6)), 
+                  url('https://lh3.googleusercontent.com/d/1lsqBcPYetFbAcKeGTma-AqOj6XElrDDd');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px 40px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      width: 90%; max-width: 460px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .logo-container { margin-bottom: 15px; }
+    
+    .logo-img {
+      max-width: 120px;
+      height: auto;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .brand-name { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 5px; font-weight: 700; }
+    .tagline { color: var(--secondary); font-size: 12px; margin-bottom: 25px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+    
+    .input-group { margin-bottom: 18px; text-align: left; }
+    label { display: block; font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 7px; letter-spacing: 1px; text-transform: uppercase; }
+    
+    select, input {
+      width: 100%; padding: 12px 15px;
+      border: 1px solid #e2e8f0; border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 14px;
+      box-sizing: border-box; transition: 0.3s;
+      background-color: white;
+    }
+    select:focus, input:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(37, 161, 142, 0.1); }
+
+    button {
+      width: 100%; padding: 16px;
+      background: var(--primary); color: white;
+      border: none; border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; transition: 0.3s; margin-top: 10px;
+      letter-spacing: 0.5px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    button:hover { background: var(--secondary); transform: translateY(-2px); }
+    button:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+    #loader { display: none; margin-top: 15px; color: var(--secondary); font-size: 13px; font-weight: 600; }
+    #message { margin-top: 15px; font-size: 13px; font-weight: 600; }
+    .error { color: #e11d48; }
+    .success { color: var(--secondary); }
+
+    footer { margin-top: 30px; font-size: 10px; color: #94a3b8; line-height: 1.5; border-top: 1px solid #eee; padding-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo-container">
+      <img src="https://lh3.googleusercontent.com/d/14I4-_58czB8jgAovPQP2WLDoPWLY33m5" alt="Logo Arfaz Tour" class="logo-img">
+    </div>
+
+    <div class="brand-name">Arfaz Tour</div>
+    <div class="tagline">Dokumentasi & Galeri Trip</div>
+    
+    <div class="input-group">
+      <label><i class="fa-solid fa-map-location-dot"></i> Pilih Rombongan Trip</label>
+      <select id="tripSelect">
+        <option value="" disabled selected>-- Pilih Agenda / Instansi --</option>
+        
+        <optgroup label="Trip / Agenda 2025">
+          <option value="kkl_udinus_2025">KKL UDINUS 2025</option>
+          <option value="sdi_alazhar22_2025">Field Trip SDI Al Azhar 22 Salatiga 2025</option>
+          <option value="outdoor_dharma_2025">Outdoor Learning Dharma Lestari 2025</option>
+          <option value="famgath_tahu3dara_2025">Family Gathering Tahu 3 Dara 2025</option>
+          <option value="famgath_dishub_2025">Family Gathering Dinas Perhubungan Kota Salatiga 2025</option>
+          <option value="famgath_rt06_tetep">Family Gathering RT 06 Tetep Randuacir</option>
+          <option value="famgath_sman1_kebumen">Family Gathering SMA Negeri 1 Salatiga Ke Kebumen</option>
+          <option value="famgath_dw_smpn4">Family Gathering Dharma Wanita SMP Negeri 4 Salatiga</option>
+          <option value="wisata_nurul_jannah">Wisata Religi Mushola Nurul Jannah</option>
+          <option value="grissa_teachers_2025">GRISSA TEACHERS ON VACATION 12-13 Sept</option>
+          <option value="smpn4_bali_2025">SMP Negeri 4 Salatiga goes to Bali 2025</option>
+          <option value="smpn9_bali_2025">SMP Negeri 9 Salatiga goes to Bali 2025</option>
+          <option value="smk_pgri1_bali_2025">SMK PGRI 1 Salatiga goes to Bali 2025</option>
+          <option value="ziarah_st_louis">Ziarah dan Rekreasi Asrama St Louis</option>
+          <option value="smpn10_guru_karyawan">SMP Negeri 10 Salatiga - Guru Karyawan</option>
+          <option value="smpn3_jogja_guru">SMP Negeri 3 Salatiga Guru & Karyawan Goes to Jogjakarta</option>
+          <option value="smk_muh_bali_2025">SMK Muhammadiyah Salatiga goes to Bali 2025</option>
+          <option value="smk_saraswati_bali_2025">SMK Saraswati Salatiga goes to Bali 2025</option>
+          <option value="ziarah_al_hikmah">Ziarah dan Rekreasi Pengajian Al Hikmah Kemiri</option>
+          <option value="sma_lab_bali">SMA Lab Satya Wacana goes to Bali</option>
+          <option value="pkk_kutowinangun_lor">Rekreasi PKK Kelurahan Kutowinangun Lor</option>
+        </optgroup>
+
+        <optgroup label="Trip / Agenda 2026">
+          <option value="smpn3_bali_2026">SMP Negeri 3 Salatiga goes to Bali 2026</option>
+          <option value="kkl_udinus_2026">KKL UDINUS 2026</option>
+          <option value="smpn9_bali_2026">SMP Negeri 9 Salatiga goes to Bali 2026</option>
+          <option value="smk_nusapersada_bandung_2026">SMK Nusa Persada Tengaran goes to Bandung 2026</option>
+          <option value="smak1_bali_2026">SMA Kristen 1 Salatiga goes to Bali 2026</option>
+          <option value="sdi_alazhar22_bandung_2026">SD Islam Al Azhar 22 Salatiga goes to Bandung 2026</option>
+          <option value="smpi_alazhar18_bali_2026">SMP Islam Al Azhar 18 Salatiga goes to Bali 2026</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label><i class="fa-solid fa-key"></i> Kunci Akses / Password</label>
+      <input type="password" id="passInput" placeholder="Masukkan password...">
+    </div>
+
+    <button id="btnEnter" onclick="masuk()">
+      <i class="fa-solid fa-images"></i> BUKA DOKUMENTASI
+    </button>
+
+    <div id="loader"><i class="fas fa-spinner fa-spin"></i> Menghubungkan ke server...</div>
+    <div id="message"></div>
+
+    <footer>
+      © Arfaz Tour & Travel Salatiga.<br>
+      Infrastruktur Aman Berbasis Cloud.
+    </footer>
+  </div>
+
+  <script>
+    function masuk() {
+      const trip = document.getElementById('tripSelect').value;
+      const pass = document.getElementById('passInput').value;
+      const btn = document.getElementById('btnEnter');
+      const msg = document.getElementById('message');
+      const loader = document.getElementById('loader');
+
+      if (!trip) { msg.innerHTML = '<span class="error">Sila pilih rombongan trip!</span>'; return; }
+      if (!pass) { msg.innerHTML = '<span class="error">Sila masukkan password!</span>'; return; }
+
+      msg.innerHTML = '';
+      loader.style.display = 'block';
+      btn.disabled = true;
+
+      /* =======================================================================
+         ⚠️ WAJIB: GANTI URL DI BAWAH INI DENGAN PAUTAN WEB APP GOOGLE SCRIPT ANDA
+         ======================================================================= */
+      const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbwe3Q54AdxeRNai3hFa65KSNTP__wO-oPpHWCIpRZguVZSPCINUvdstj9wv0LSEcA_83A/exec";
+
+      fetch(`${URL_WEB_APP}?idTrip=${encodeURIComponent(trip)}&password=${encodeURIComponent(pass)}`)
+        .then(response => response.json())
+        .then(res => {
+          loader.style.display = 'none';
+          btn.disabled = false;
+          if (res.status === "sukses") {
+            msg.innerHTML = '<span class="success">Akses Diterima! Mengalihkan...</span>';
+            setTimeout(() => { window.top.location.href = res.url; }, 1200);
+          } else {
+            msg.innerHTML = `<span class="error">${res.pesan}</span>`;
+          }
+        })
+        .catch(() => {
+          loader.style.display = 'none';
+          btn.disabled = false;
+          msg.innerHTML = '<span class="error">Ralat sambungan pelayan. Cuba lagi.</span>';
+        });
+    }
+  </script>
+</body>
+</html>
